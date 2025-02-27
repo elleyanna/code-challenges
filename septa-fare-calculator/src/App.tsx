@@ -1,7 +1,12 @@
 import React from "react";
+import FareCalculator from "./components/FareCalculator";
 
 const App = () => {
-  return <h1>Hello, React with Vite!</h1>;
+  return (
+    <>
+      <FareCalculator />
+    </>
+  );
 };
 
 export default App;
