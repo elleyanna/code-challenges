@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
+import { FareData } from "../../types/fare";
 
 const FareCalculator = () => {
   const [zone, setZone] = useState(1);
   const [type, setType] = useState("weekday");
   const [purchase, setPurchase] = useState("advance_purchase");
   const [trips, setTrips] = useState(1);
-  const [totalPrice, setTotalPrice] = useState(null);
-  const [fareData, setFareData] = useState(null);
+  const [totalPrice, setTotalPrice] = useState<string | null>(null);
+  const [fareData, setFareData] = useState<FareData | null>(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
@@ -54,11 +55,9 @@ const FareCalculator = () => {
           Zone:
           <select
             value={zone}
-            onChange={(e: { target: { value: string } }) =>
-              setZone(e.target.value)
-            }
+            onChange={(e) => setZone(Number(e.target.value))}
           >
-            {fareData?.zones.map((item: { zone: string; name: string }) => (
+            {fareData?.zones.map((item) => (
               <option key={item.zone} value={item.zone}>
                 {item.name}
               </option>
@@ -108,9 +107,7 @@ const FareCalculator = () => {
           <input
             type="number"
             value={trips}
-            onChange={(e: { target: { value: number } }) =>
-              setTrips(e.target.value)
-            }
+            onChange={(e) => setTrips(Number(e.target.value))}
             min="1"
           />
         </label>
