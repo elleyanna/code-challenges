@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { FareData } from "../../types/fare";
 import "./fareCalculator.scss";
 
 const FareCalculator = () => {
@@ -30,7 +29,7 @@ const FareCalculator = () => {
     if (!fareData) return;
 
     const selectedZone = fareData.zones.find(
-      (item) => item.zone === Number(zone)
+      (item: { zone: number }) => item.zone === Number(zone)
     );
     if (!selectedZone) {
       setTotalPrice(null);
@@ -38,7 +37,8 @@ const FareCalculator = () => {
     }
 
     const fareOption = selectedZone.fares.find(
-      (option) => option.type === type && option.purchase === purchase
+      (option: { type: string; purchase: string }) =>
+        option.type === type && option.purchase === purchase
     );
     if (!fareOption) {
       setTotalPrice(null);
@@ -77,9 +77,11 @@ const FareCalculator = () => {
             <select
               className="dropdown-select"
               value={zone}
-              onChange={(e) => setZone(Number(e.target.value))}
+              onChange={(e: { target: { value: number } }) =>
+                setZone(Number(e.target.value))
+              }
             >
-              {fareData?.zones.map((item) => (
+              {fareData?.zones.map((item: { zone: string; name: string }) => (
                 <option key={item.zone} value={item.zone}>
                   {item.name}
                 </option>
@@ -93,7 +95,9 @@ const FareCalculator = () => {
             <select
               className="dropdown-select"
               value={type}
-              onChange={(e) => setType(e.target.value)}
+              onChange={(e: { target: { value: string } }) =>
+                setType(e.target.value)
+              }
             >
               <option value="weekday">Weekdays</option>
               <option value="evening_weekend">Evening/Weekend</option>
@@ -112,7 +116,9 @@ const FareCalculator = () => {
                 type="radio"
                 value="advance_purchase"
                 checked={purchase === "advance_purchase"}
-                onChange={(e) => setPurchase(e.target.value)}
+                onChange={(e: { target: { value: string } }) =>
+                  setPurchase(e.target.value)
+                }
               />
               Station Kiosk
             </label>
@@ -121,7 +127,9 @@ const FareCalculator = () => {
                 type="radio"
                 value="onboard_purchase"
                 checked={purchase === "onboard_purchase"}
-                onChange={(e) => setPurchase(e.target.value)}
+                onChange={(e: { target: { value: string } }) =>
+                  setPurchase(e.target.value)
+                }
               />
               Onboard
             </label>
@@ -134,7 +142,9 @@ const FareCalculator = () => {
               type="number"
               className="trip-input"
               value={trips}
-              onChange={(e) => setTrips(Number(e.target.value))}
+              onChange={(e: { target: { value: number } }) =>
+                setTrips(Number(e.target.value))
+              }
               min="1"
             />
           </label>
