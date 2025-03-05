@@ -58,7 +58,7 @@ const FareCalculator = () => {
       case "weekday":
         return fareData?.info?.weekday;
       case "evening_weekend":
-        return fareData?.info.evening_weekend;
+        return fareData?.info?.evening_weekend;
       default:
         return "";
     }
