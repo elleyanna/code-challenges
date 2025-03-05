@@ -7,8 +7,8 @@ const FareCalculator = () => {
   const [type, setType] = useState("weekday");
   const [purchase, setPurchase] = useState("advance_purchase");
   const [trips, setTrips] = useState(1);
-  const [totalPrice, setTotalPrice] = useState<string | null>(null);
-  const [fareData, setFareData] = useState<FareData | null>(null);
+  const [totalPrice, setTotalPrice] = useState(null);
+  const [fareData, setFareData] = useState(null);
   const [error, setError] = useState("");
 
   useEffect(() => {
